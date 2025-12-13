@@ -23,3 +23,13 @@ menu_item.forEach((item) => {
 		mobile_menu.classList.toggle('active');
 	});
 });
+
+/* Testimonials carousel */
+document.addEventListener('DOMContentLoaded', () => {
+	const items = Array.from(document.querySelectorAll('#testimonials .testimonial-item'));
+	if (!items.length) return;
+	let current = 0;
+	const showTime = 5000; // ms per testimonial (slower per user request)
+
+	// Testimonials: removed carousel/animation per user request; all testimonials are static cards now.
+});
