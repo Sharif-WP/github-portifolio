@@ -141,8 +141,27 @@ p {
 .store-link:active { opacity: 0.86; transform: scale(0.985); }
 /* External CTA style (different accent color) */
 .external-link { position: relative; overflow: hidden; display: inline-flex; align-items: center; }
-.external-link:hover { border-radius: 14px; box-shadow: 0 10px 30px rgba(10,163,154,0.2); padding-left: 34px; padding-right: 34px; }
-.external-link:active { transform: scale(0.986); opacity: 0.9; }
+.external-link {
+	position: relative;
+	overflow: hidden;
+	display: inline-flex;
+	align-items: center;
+	min-width: 220px;
+	justify-content: center;
+	z-index: 5;
+	border-radius: 10px;
+}
+.external-link:hover {
+	border-radius: 14px;
+	box-shadow: 0 12px 36px rgba(10,163,154,0.22);
+	padding-left: 34px;
+	padding-right: 34px;
+}
+.external-link:active { transform: scale(0.986); opacity: 0.92; }
+
+/* Ensure store and external CTAs are always visible on small screens */
+.store-link, .external-link { color: #fff !important; }
+.store-link { min-width: 220px; justify-content: center; }
 .brand h1 {
 	font-size: 3rem;
 	text-transform: uppercase;
