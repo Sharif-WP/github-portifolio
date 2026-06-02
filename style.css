@@ -525,80 +525,150 @@ p {
 
 /* Projects section */
 #projects .projects {
-	flex-direction: column;
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 100px 0;
+    display: flex; /* Added display flex to make flex-direction work */
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 0;
 }
+
 #projects .projects-header h1 {
-	margin-bottom: 50px;
+    margin-bottom: 50px;
 }
+
 #projects .all-projects {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%; /* Ensures full width alignment */
 }
+
 #projects .project-item {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	width: 80%;
-	margin: 20px auto;
-	overflow: hidden;
-	border-radius: 10px;
+    display: flex;
+    align-items: stretch; /* Forces both info and img sides to equal height */
+    justify-content: center;
+    flex-direction: column;
+    width: 80%;
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1); /* Adds clean depth */
 }
+
 #projects .project-info {
-	padding: 30px;
-	flex-basis: 50%;
-	height: 100%;
-	display: flex;
-	align-items: flex-start;
-	justify-content: center;
-	flex-direction: column;
-	background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
-	color: white;
+    padding: 30px;
+    flex-basis: 50%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+    color: white;
 }
+
 #projects .project-info h1 {
-	font-size: 4rem;
-	font-weight: 500;
+    font-size: 4rem;
+    font-weight: 500;
 }
+
 #projects .project-info h2 {
-	font-size: 1.8rem;
-	font-weight: 500;
-	margin-top: 10px;
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-top: 10px;
 }
+
 #projects .project-info p {
-	color: white;
+    color: white;
+    margin-top: 15px;
+    line-height: 1.6;
 }
+
 #projects .project-img {
-	flex-basis: 50%;
-	height: 300px;
-	overflow: hidden;
-	position: relative;
+    flex-basis: 50%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    background-color: #000; /* Dark background behind videos/images */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-#projects .project-img:after {
-	content: '';
-	position: absolute;
-	left: 0;
-	top: 0;
-	height: 100%;
-	width: 100%;
-	background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
-  opacity: 0.01;
-}
+
+/* Base style for flat images */
 #projects .project-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: 0.3s ease transform;
+    width: 100%;
+    height: 100%;
+    min-height: 350px; /* Replaced hardcoded height with a smart minimum baseline */
+    object-fit: cover;
+    display: block;
+    transition: 0.3s ease transform;
 }
+
+/* Safe Link overlay styling for Project 2 */
+#projects .video-link-overlay {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Zoom effect on hover for images */
 #projects .project-item:hover .project-img img {
-  transform: scale(1.1);
+    transform: scale(1.05);
+}
+
+/* ===================================================
+   NEW: VIDEO WRAPPER RULES (Prevents Layout Crashes)
+   =================================================== */
+
+/* Enforces a perfect, un-crashable 16:9 widescreen ratio */
+#projects .video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* Mathematical 16:9 ratio rule */
+    height: 0;
+    overflow: hidden;
+}
+
+/* Forces iframe to stretch strictly inside the wrapper bounds */
+#projects .video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* ===================================================
+   DESKTOP OPTIMIZATION (Side-by-Side View)
+   =================================================== */
+@media only screen and (min-width: 768px) {
+    #projects .project-item {
+        flex-direction: row; /* Puts text on left, media on right */
+        height: 400px; /* Set clean unified desktop height */
+    }
+    
+    #projects .project-info {
+        height: 100%;
+    }
+    
+    #projects .project-img {
+        height: 100%;
+    }
+
+    /* Adjusts video wrapper on desktop to fill its half perfectly */
+    #projects .video-wrapper {
+        padding-bottom: 0;
+        height: 100%;
+    }
+    
+    /* Alternate layouts for a premium layout cadence (Every second item flips side) */
+    #projects .project-item:nth-child(even) {
+        flex-direction: row-reverse;
+    }
 }
 /* End Projects section */
-
 /* About Section */
 /* Certificates Section */
 #certificates {
